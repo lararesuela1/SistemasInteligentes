@@ -1,4 +1,5 @@
 package Principal;
+
 import java.awt.EventQueue;
 //import java.awt.Panel;
 import javax.swing.JFrame;
@@ -34,6 +35,7 @@ public class VentanaPrincipal {
 	private File carpetaSucesores;
 	private File carpetaMovimientos;
 		
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -52,6 +54,7 @@ public class VentanaPrincipal {
 	}
 
 	private void initialize() {	
+		
 		carpetaOriginal=new File("original");
 		carpetaDesordenado=new File("desordenado");
 		carpetaMovimientos=new File("movimientos");
@@ -134,38 +137,22 @@ public class VentanaPrincipal {
 					
 					original=Operaciones.generarPuzle(imagen1,filas,columnas,"original");
 					desordenado=Operaciones.generarPuzle(imagen2,filas,columnas,"desordenado");
-					if(Operaciones.esIgual(original, desordenado)){
-						Operaciones.encontrarHueco(desordenado);
-		
-						System.out.println("ESTADO INICIAL:");
-						System.out.println();
-						System.out.println(desordenado);
+					if(Operaciones.esIgualInicial(original, desordenado)){
 						
-						System.out.println("SUCESORES DEL ESTADO ACTUAL:");
-						System.out.println();
-						ArrayList<Puzle> suc=Operaciones.sucesores(desordenado);
 						
-						for(int i=0;i<suc.size();i++){
-							System.out.println("Sucersor "+i+":\n"+suc.get(i));
-							Operaciones.unirPuzle(suc.get(i), "sucesores");
-						}
 						
-						System.out.println("MOVIENDO HACIA ABAJO");
-						System.out.println();
-						desordenado.MoverAbajo();
-						System.out.println(desordenado);
-						panel2 = new PanelImagen();
-						panel2.setBounds(484, 135, 433, 287);
-						frame.getContentPane().add(panel2);
-						panel2.setImagen(Operaciones.unirPuzle(desordenado, "movimientos"));
-						btnOrdenar.setEnabled(false);
+						
 					}else{
 						System.out.println("Error, la imagen no es la misma");
 					}
+				
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+				
+				
+			
 			}
 		});
 		btnOrdenar.setBounds(500, 486, 97, 25);
@@ -196,21 +183,27 @@ public class VentanaPrincipal {
 		btnSalir.setBounds(639, 486, 97, 25);
 		frame.getContentPane().add(btnSalir);
 	}
-	
 	private class BtnSalirActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
+			
 			File[] ficherosOriginal=carpetaOriginal.listFiles();
 			File[] ficherosDesordenado=carpetaDesordenado.listFiles();
 			
-			for(int i=0;i<ficherosOriginal.length;i++)
+			for(int i=0;i<ficherosOriginal.length;i++){
+				ficherosOriginal[i].setWritable(true);
 				ficherosOriginal[i].delete();
+				
+			}
 			
-			for(int i=0;i<ficherosDesordenado.length;i++)
+			for(int i=0;i<ficherosDesordenado.length;i++){
+				ficherosDesordenado[i].setWritable(true);
 				ficherosDesordenado[i].delete();
-			
+			}
 			carpetaOriginal.delete();
 			carpetaDesordenado.delete();
 			System.exit(0);		
 		}
+		
 	}
+	
 }

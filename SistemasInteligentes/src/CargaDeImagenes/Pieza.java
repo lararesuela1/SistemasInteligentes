@@ -1,14 +1,16 @@
 package CargaDeImagenes;
 
+//import java.awt.Image;
 
 public class Pieza {
+	
+	//private Image imagen;
 	private String ruta;
 	private boolean visitado;
 	private int id;
-	
-	//CONSTRUCTOR
 	public Pieza(String ruta,int id) {
 		super();
+		//this.imagen = imagen;
 		this.ruta = ruta;
 		this.id=id;
 	}
@@ -17,7 +19,6 @@ public class Pieza {
 		return id;
 	}
 
-	//MÉTODOS GET Y SET
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -35,7 +36,6 @@ public class Pieza {
 	public void setVisitado(boolean visitado) {
 		this.visitado = visitado;
 	}
-	
 	@Override
 	public String toString() {
 		return ""+id;
