@@ -1,13 +1,13 @@
 package Problema;
 
-public class Nodo<G,H> {
+public class Nodo {
 	
-	Estado<G,H> e;
+	Estado e;
 	int costo;
-	H accion;
+	String accion;
 	int valor;
 	
-	public Nodo(Estado<G, H> e, int costo, H accion, int valor) {
+	public Nodo(Estado e, int costo, String accion, int valor) {
 		super();
 		this.e = e;
 		this.costo = costo;
@@ -15,10 +15,10 @@ public class Nodo<G,H> {
 		this.valor = valor;
 	}
 	
-	public Estado<G, H> getE() {
+	public Estado getE() {
 		return e;
 	}
-	public void setE(Estado<G, H> e) {
+	public void setE(Estado e) {
 		this.e = e;
 	}
 	public int getCosto() {
@@ -27,10 +27,10 @@ public class Nodo<G,H> {
 	public void setCosto(int costo) {
 		this.costo = costo;
 	}
-	public H getAccion() {
+	public String getAccion() {
 		return accion;
 	}
-	public void setAccion(H accion) {
+	public void setAccion(String accion) {
 		this.accion = accion;
 	}
 	public int getValor() {
