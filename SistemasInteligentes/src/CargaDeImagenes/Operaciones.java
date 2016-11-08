@@ -7,6 +7,8 @@ import java.io.*;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
+
+import Problema.Estado;
 //import javax.swing.ImageIcon;
 //import javax.swing.SingleSelectionModel;
 
@@ -52,7 +54,16 @@ public class Operaciones {
         return p;
         
     }
-	
+	public static Estado generarEstadoInicial(Puzle p){
+		
+		int[][]matriz=new int[p.getP().length][p.getP()[0].length];
+		for(int i=0;i<p.getP().length;i++)
+			for(int j=0;i<p.getP()[0].length;j++)
+				matriz[i][j]=p.getP()[i][j].getId();
+		
+		return new Estado(matriz);
+		
+	}
 	public static boolean esIgualInicial (Puzle puzleOriginal, Puzle puzleDesordenado){
     	
     	boolean esigual=false,encontrado=false,error=false;
