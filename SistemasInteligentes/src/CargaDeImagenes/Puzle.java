@@ -58,112 +58,30 @@ public class Puzle implements Cloneable{
 	public Pieza getHueco(){
 		return p[filaHueco][columnaHueco];
 	}
+	
 	//GETTERS AND SETTERS	
 	
 		
-	//MOVIMIENTOS	
-	
-	public ArrayList<String> acciones(){
-    	ArrayList<String> movimientos = new ArrayList<String>();
-    	
-		if (moverAbajo() == 0){
-			movimientos.add("ABAJO");
-			moverArriba();
-			
-		}
-		if (moverArriba() == 0){
-			movimientos.add("ARRIBA");
-			moverAbajo();
-		}
-		
-		if (moverDer() == 0){
-			movimientos.add("DERECHA");
-			moverIzq();
-		}
-		
-		if (moverIzq() == 0){
-			movimientos.add("IZQUIERDA");
-			moverDer();
-		}
-		
-		return movimientos;
-   }	
-	
-	public int mover(String movimiento){
-		int movido=1;
-		
-		switch(movimiento){
-			case "ARRIBA":
-				movido=this.moverArriba();
-				break;
-			case "ABAJO":
-				movido=this.moverAbajo();
-				break;
-			case "IZQUIERDA":
-				movido=this.moverIzq();
-				break;
-			case "DERECHA":
-				movido=this.moverDer();
-				break;
 
-		}
-		return movido;
+	
+	
+	public int getFilaHueco() {
+		return filaHueco;
 	}
-	
-	public int moverIzq(){
-		int correcto=1;
-		if(columnaHueco>0){
-			intercambia(filaHueco,columnaHueco,filaHueco,columnaHueco-1);
-			setHueco(filaHueco,columnaHueco-1);
-			correcto=0;
-		}
-			
-		return correcto;
+
+	public void setFilaHueco(int filaHueco) {
+		this.filaHueco = filaHueco;
 	}
-	
-	public int moverDer(){
-		int correcto=1;
-		if(columnaHueco<p[0].length-1){
-			intercambia(filaHueco,columnaHueco,filaHueco,columnaHueco+1);
-			setHueco(filaHueco,columnaHueco+1);
-			correcto=0;
-		}
-		
-		return correcto;
+
+	public int getColumnaHueco() {
+		return columnaHueco;
 	}
-	
-	public int moverArriba(){
-		int correcto=1;
-		if(filaHueco>0){
-			intercambia(filaHueco,columnaHueco,filaHueco-1,columnaHueco);
-			setHueco(filaHueco-1,columnaHueco);
-			correcto=0;
-		}
-		
-		return correcto;
+
+	public void setColumnaHueco(int columnaHueco) {
+		this.columnaHueco = columnaHueco;
 	}
-	
-	public int moverAbajo(){
-		int correcto=1;
-		if(filaHueco<p.length-1){
-			intercambia(filaHueco,columnaHueco,filaHueco+1,columnaHueco);
-			setHueco(filaHueco+1,columnaHueco);
-			correcto=0;
-		}
-		
-		return correcto;
-	}	
-	public void intercambia(int filaOrigen,int columnaOrigen,int filaDestino,int columnaDestino){
-		Pieza aux=p[filaOrigen][columnaOrigen];
-		Pieza destino=p[filaDestino][columnaDestino];
-		p[filaOrigen][columnaOrigen]=destino;
-		p[filaDestino][columnaDestino]=aux;
-		
-	}
-	//MOVIMIENTOS
-	
-	
-	//MISC
+
+//MISC
 public boolean isOrdenado(){
     	
     	boolean ordenado=false,error=false;

@@ -61,7 +61,7 @@ public class Operaciones {
 			for(int j=0;i<p.getP()[0].length;j++)
 				matriz[i][j]=p.getP()[i][j].getId();
 		
-		return new Estado(matriz);
+		return new Estado(matriz,p.getFilaHueco(),p.getColumnaHueco());
 		
 	}
 	public static boolean esIgualInicial (Puzle puzleOriginal, Puzle puzleDesordenado){
@@ -169,7 +169,105 @@ public class Operaciones {
 		return bytes;
 	}
 
+
+//MOVIMIENTOS	
+
+public ArrayList<String> acciones(Estado e){
+	ArrayList<String> movimientos = new ArrayList<String>();
+	
+	if (moverAbajo(e) == 0){
+		movimientos.add("ABAJO");
+		moverArriba(e);
+		
+	}
+	if (moverArriba(e) == 0){
+		movimientos.add("ARRIBA");
+		moverAbajo(e);
+	}
+	
+	if (moverDer(e) == 0){
+		movimientos.add("DERECHA");
+		moverIzq(e);
+	}
+	
+	if (moverIzq(e) == 0){
+		movimientos.add("IZQUIERDA");
+		moverDer(e);
+	}
+	
+	return movimientos;
+}	
+
+public int mover(Estado e,String movimiento){
+	int movido=1;
+	
+	switch(movimiento){
+		case "ARRIBA":
+			movido=moverArriba(e);
+			break;
+		case "ABAJO":
+			movido=moverAbajo(e);
+			break;
+		case "IZQUIERDA":
+			movido=moverIzq(e);
+			break;
+		case "DERECHA":
+			movido=moverDer(e);
+			break;
+
+	}
+	return movido;
 }
 
+public int moverIzq(Estado e){
+	int correcto=1;
+	if(e.getColumnaHueco()>0){
+		intercambia(e.getEstado(),e.getFilaHueco(),e.getColumnaHueco(),e.getFilaHueco(),e.getColumnaHueco()-1);
+		e.setColumnaHueco(e.getColumnaHueco()-1);
+		correcto=0;
+	}
+		
+	return correcto;
+}
 
+public int moverDer(Estado e){
+	int correcto=1;
+	if(e.getColumnaHueco()<e.getEstado()[0].length-1){
+		intercambia(e.getEstado(),e.getFilaHueco(),e.getColumnaHueco(),e.getFilaHueco(),e.getColumnaHueco()+1);
+		e.setColumnaHueco(e.getColumnaHueco()+1);
+		correcto=0;
+	}
+	
+	return correcto;
+}
 
+public int moverArriba(Estado e){
+	int correcto=1;
+	if(e.getFilaHueco()>0){
+		intercambia(e.getEstado(),e.getFilaHueco(),e.getColumnaHueco(),e.getFilaHueco()-1,e.getColumnaHueco());
+		e.setFilaHueco(e.getFilaHueco()-1);
+		correcto=0;
+	}
+	
+	return correcto;
+}
+
+public int moverAbajo(Estado e){
+	int correcto=1;
+	if(e.getFilaHueco()<e.getEstado().length-1){
+		intercambia(e.getEstado(),e.getFilaHueco(),e.getColumnaHueco(),e.getFilaHueco()+1,e.getColumnaHueco());
+		e.setFilaHueco(e.getFilaHueco()+1);
+		correcto=0;
+	}
+	
+	return correcto;
+}	
+public void intercambia(int[][] p,int filaOrigen,int columnaOrigen,int filaDestino,int columnaDestino){
+	int aux=p[filaOrigen][columnaOrigen];
+	int destino=p[filaDestino][columnaDestino];
+	p[filaOrigen][columnaOrigen]=destino;
+	p[filaDestino][columnaDestino]=aux;
+	
+}
+//MOVIMIENTOS
+}
