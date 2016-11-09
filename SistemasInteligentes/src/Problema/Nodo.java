@@ -1,6 +1,6 @@
 package Problema;
 
-public class Nodo {
+public class Nodo implements Comparable<Nodo> {
 	Estado e;
 	int costo;
 	String accion;
@@ -38,4 +38,14 @@ public class Nodo {
 	public void setValor(int valor) {
 		this.valor = valor;
 	}
+
+	public int compareTo(Nodo nodo) {
+	      if (valor < nodo.valor) {
+	          return -1;
+	      }
+	      if (valor > nodo.valor) {
+	          return 1;
+	            }
+	            return 0;
+	        }
 }
