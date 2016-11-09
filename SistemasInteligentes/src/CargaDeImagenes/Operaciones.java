@@ -172,7 +172,7 @@ public class Operaciones {
 
 //MOVIMIENTOS	
 
-public ArrayList<String> acciones(Estado e){
+public static ArrayList<String> acciones(Estado e){
 	ArrayList<String> movimientos = new ArrayList<String>();
 	
 	if (moverAbajo(e) == 0){
@@ -198,7 +198,7 @@ public ArrayList<String> acciones(Estado e){
 	return movimientos;
 }	
 
-public int mover(Estado e,String movimiento){
+public static int mover(Estado e,String movimiento){
 	int movido=1;
 	
 	switch(movimiento){
@@ -219,7 +219,7 @@ public int mover(Estado e,String movimiento){
 	return movido;
 }
 
-public int moverIzq(Estado e){
+public static int moverIzq(Estado e){
 	int correcto=1;
 	if(e.getColumnaHueco()>0){
 		intercambia(e.getEstado(),e.getFilaHueco(),e.getColumnaHueco(),e.getFilaHueco(),e.getColumnaHueco()-1);
@@ -230,7 +230,7 @@ public int moverIzq(Estado e){
 	return correcto;
 }
 
-public int moverDer(Estado e){
+public static int moverDer(Estado e){
 	int correcto=1;
 	if(e.getColumnaHueco()<e.getEstado()[0].length-1){
 		intercambia(e.getEstado(),e.getFilaHueco(),e.getColumnaHueco(),e.getFilaHueco(),e.getColumnaHueco()+1);
@@ -241,7 +241,7 @@ public int moverDer(Estado e){
 	return correcto;
 }
 
-public int moverArriba(Estado e){
+public static int moverArriba(Estado e){
 	int correcto=1;
 	if(e.getFilaHueco()>0){
 		intercambia(e.getEstado(),e.getFilaHueco(),e.getColumnaHueco(),e.getFilaHueco()-1,e.getColumnaHueco());
@@ -252,7 +252,7 @@ public int moverArriba(Estado e){
 	return correcto;
 }
 
-public int moverAbajo(Estado e){
+public static int moverAbajo(Estado e){
 	int correcto=1;
 	if(e.getFilaHueco()<e.getEstado().length-1){
 		intercambia(e.getEstado(),e.getFilaHueco(),e.getColumnaHueco(),e.getFilaHueco()+1,e.getColumnaHueco());
@@ -262,7 +262,7 @@ public int moverAbajo(Estado e){
 	
 	return correcto;
 }	
-public void intercambia(int[][] p,int filaOrigen,int columnaOrigen,int filaDestino,int columnaDestino){
+public static void intercambia(int[][] p,int filaOrigen,int columnaOrigen,int filaDestino,int columnaDestino){
 	int aux=p[filaOrigen][columnaOrigen];
 	int destino=p[filaDestino][columnaDestino];
 	p[filaOrigen][columnaOrigen]=destino;
