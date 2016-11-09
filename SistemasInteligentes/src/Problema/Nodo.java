@@ -1,7 +1,6 @@
 package Problema;
 
 public class Nodo {
-	
 	Estado e;
 	int costo;
 	String accion;
@@ -39,5 +38,4 @@ public class Nodo {
 	public void setValor(int valor) {
 		this.valor = valor;
 	}
-	
 }
